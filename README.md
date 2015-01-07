@@ -75,13 +75,23 @@ Enter id_rsa.pub path [~/.ssh/id_rsa.pub]:
 Add user to sudoers group (y/n) [n]: y
 ```
 
-
 ## Script execution
 
 Finally, execute bootstrap Ansible task for admin user:
 
 ```
-ansible-playbook bootstrap.yml --ask-sudo
+$ ansible-playbook bootstrap.yml --ask-sudo
+sudo password:
+```
+
+## Reboot
+
+After successfully bootstrapping and securing your server, I recommend to reboot server for kernel updates.
+
+```
+$ ansible-playbook reboot.yml --ask-sudo
+sudo password: 
+Are you sure you want to reboot server (yes/no)? [no]: yes
 ```
 
 ## Collectd
