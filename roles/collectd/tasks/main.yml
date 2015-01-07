@@ -1,0 +1,28 @@
+--- 
+- name: Add collectd user
+  action: user name=collectd shell=/usr/sbin/nologin
+
+- name: Install collectd and dependencies
+  action: apt pkg={{ item }} state=installed
+  with_items:
+   - git
+   - collectd
+   - librrds-perl
+   - libjson-perl
+   - libhtml-parser-perl
+
+- name: Clone collectd-web
+  git: repo=https://github.com/httpdss/collectd-web.git dest=/home/collectd/collectd-web
+
+- name: Copy nginx configuration  
+  template: src=nginx.conf dest=/etc/nginx/sites-enabled/collectd.conf
+  notify: restart nginx
+
+- name: Install supervisor  
+  action: apt pkg=supervisor state=present 
+ 
+- name: Copy supervisor configuration  
+  template: src=supervisor.conf dest=/etc/supervisor/conf.d/collectd.conf 
+  notify: restart supervisor 
+
+

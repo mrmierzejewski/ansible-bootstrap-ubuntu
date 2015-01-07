@@ -1,0 +1,4 @@
+---
+- name: Set hostname
+  action: shell hostname {{ hostname }}
+                  

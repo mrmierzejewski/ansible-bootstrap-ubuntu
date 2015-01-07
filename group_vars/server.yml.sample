@@ -1,0 +1,7 @@
+--- 
+hostname: 'mydomain.com'
+collectd_server_name: 'collecd-web.mydomain.com'
+locale: 'en_US.UTF-8'
+language: 'en_US:en'
+timezone: 'Europe/Warsaw'
+

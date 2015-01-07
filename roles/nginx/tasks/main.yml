@@ -1,0 +1,7 @@
+---
+- name: Install nginx 
+  action: apt pkg=nginx state=present 
+
+- name: Remove default nginx configuration 
+  action: file path=/etc/nginx/sites-enabled/default state=absent 
+  notify: restart nginx 

@@ -1,0 +1,16 @@
+---
+- name: Add or update user and set password
+  action: user name={{ username }} password={{ password }}
+
+- name: Add or udpate authorized key
+  action: authorized_key user={{ username }} key="{{ lookup('file', id_rsa_path) }}"
+  when: id_rsa_path is defined
+
+- name: Add user to sudoers
+  action: lineinfile dest=/etc/sudoers regexp="{{ username }} ALL" line="{{ username }} ALL=(ALL) ALL" state=present  
+  when: sudoers == 'y' 
+
+- name: Remove user to sudoers
+  action: lineinfile dest=/etc/sudoers regexp="{{ username }} ALL" line="{{ username }} ALL=(ALL) ALL" state=absent
+  when: sudoers == 'n' 
+
