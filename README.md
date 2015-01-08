@@ -7,6 +7,7 @@ The included tasks are following:
 
 * Update and upgrade Ubuntu packages via apt-get
 * Configure locale
+* Install cron and set ntpdate cron task to update time every hour
 * Install vim and mc (my personal preference)
 * Install fail2ban to block ssh brute-force attempts
 * Delete root password
@@ -30,7 +31,7 @@ $ sudo apt-get install ansible
 
 ## Clone scripts
 
-Next, you have to clone this repository:
+Next, clone this repository:
 
 ```
 $ git clone https://github.com/zenzire/ansible-bootstrap-ubuntu.git
@@ -49,7 +50,7 @@ Edit configuration files (hosts and global_vars/server.yml) with your own config
 
 ## Prerequisites for RunAbove hosting
 
-We need to set password for admin user and assing him to sudoers group.
+Set password for admin user and assing this user to sudoers group.
 
 ```
 $ ansible-playbook user.yml
@@ -63,7 +64,7 @@ Add user to sudoers group (y/n) [n]: y
 
 ## Prerequisites for DigitalOcean hosting
 
-We need to create admin user and assing him to sudoers group.
+Create admin user and assing this user to sudoers group.
 
 ```
 $ ansible-playbook user.yml --user root
@@ -86,7 +87,7 @@ sudo password:
 
 ## Reboot
 
-After successfully bootstrapping and securing your server, I recommend to reboot server for kernel updates.
+After successfully bootstrapping and securing your server, reboot server for kernel updates.
 
 ```
 $ ansible-playbook reboot.yml --ask-sudo
