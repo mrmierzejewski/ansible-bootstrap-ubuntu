@@ -7,7 +7,7 @@ The included tasks are following:
 
 * Update and upgrade Ubuntu packages via apt-get
 * Configure locale
-* Install cron and set ntpdate cron task to update time every hour
+* Install ntp to synchronize time
 * Install vim and mc (my personal preference)
 * Install fail2ban to block ssh brute-force attempts
 * Delete root password

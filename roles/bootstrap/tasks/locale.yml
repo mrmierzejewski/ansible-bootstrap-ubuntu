@@ -12,12 +12,5 @@
   template: src=locale/timezone dest=/etc/timezone
   notify: update tzdata
 
-- name: Install cron and ntpdate packages
-  action: apt pkg={{ item }} state=installed
-  with_items:
-    - cron
-    - ntpdate
-
-- name: Configure ntpdate to syncronize time
-  cron: name="Time synchronization" minute={{ 59|random }} user="root" job="/usr/sbin/ntpdate {{ ntp_server }}" cron_file=ntpdate
-  notify: restart cron
+- name: Install ntp packages
+  action: apt pkg=ntp state=installed
