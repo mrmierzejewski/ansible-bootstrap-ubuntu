@@ -1,6 +1,6 @@
 ---
 - name: Add or update user and set password
-  action: user name={{ username }} password={{ password }}
+  action: user name={{ username }} password={{ password }} shell=/bin/bash
 
 - name: Add or udpate authorized key
   action: authorized_key user={{ username }} key="{{ lookup('file', id_rsa_path) }}"
