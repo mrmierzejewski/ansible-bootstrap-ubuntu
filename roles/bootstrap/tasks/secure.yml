@@ -13,6 +13,9 @@
 - name: Delete /etc/sudoers.d/ files
   action: shell rm -f /etc/sudoers.d/*
 
+- name: Install packages
+  action: apt pkg=ufw state=installed
+
 - name: Setup ufw 22/tcp
   action: shell ufw allow 22/tcp
 

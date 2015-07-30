@@ -2,6 +2,9 @@
 - name: Add or update user and set password
   action: user name={{ username }} password={{ password }} shell=/bin/bash
 
+- name: Change user directory permissions to 750
+  file: path=/home/{{ username }} state=directory mode=750
+
 - name: Add or udpate authorized key
   action: authorized_key user={{ username }} key="{{ lookup('file', id_rsa_path) }}"
   when: id_rsa_path is defined
