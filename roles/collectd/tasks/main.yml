@@ -2,6 +2,9 @@
 - name: Add collectd user
   action: user name=collectd shell=/usr/sbin/nologin
 
+- name: Change user directory permissions to 750
+  file: path=/home/collectd state=directory mode=750
+
 - name: Install collectd and dependencies
   action: apt pkg={{ item }} state=installed
   with_items:
@@ -14,6 +17,9 @@
 - name: Clone collectd-web
   git: repo=https://github.com/httpdss/collectd-web.git dest=/home/collectd/collectd-web
 
+- name: Change ownership of collectd-web directory
+  file: path=/home/collectd/collectd-web state=directory owner=collectd group=collectd
+     
 - name: Copy nginx configuration  
   template: src=nginx.conf dest=/etc/nginx/sites-enabled/collectd.conf
   notify: restart nginx
