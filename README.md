@@ -50,7 +50,7 @@ Edit configuration files (hosts and global_vars/server.yml) with your own config
 
 ## Prerequisites for RunAbove hosting
 
-Set password for admin user and assing this user to sudoers group.
+Set password for admin user and add this user to sudoers group.
 
 ```
 $ ansible-playbook user.yml
@@ -64,7 +64,7 @@ Add user to sudoers group (y/n) [n]: y
 
 ## Prerequisites for DigitalOcean hosting
 
-Create admin user and assing this user to sudoers group.
+Create admin user and add this user to sudoers group.
 
 ```
 $ ansible-playbook user.yml --user root
