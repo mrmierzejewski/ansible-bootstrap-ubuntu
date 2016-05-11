@@ -1,15 +1,15 @@
 ---
 - name: Add or update the existing user on Ubuntu servers
   hosts: server
-  sudo: yes
+  become: yes
   roles:
     - user
- 
+
   vars_prompt:
     - name: "username"
       prompt: "Enter username"
       private: no
-   
+
     - name: "password"
       prompt: "Enter password"
       encrypt: "md5_crypt"
@@ -25,4 +25,3 @@
       prompt: "Add user to sudoers group (y/n)"
       default: 'n'
       private: no
-
