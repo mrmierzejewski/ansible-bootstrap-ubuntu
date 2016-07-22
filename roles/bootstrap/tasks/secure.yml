@@ -1,7 +1,7 @@
 ---
 - name: Install fail2ban
   action: apt pkg=fail2ban state=installed
-   
+
 - name: Disallow password authentication
   action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
   notify: restart ssh
@@ -11,7 +11,7 @@
   notify: restart ssh
 
 - name: Delete /etc/sudoers.d/ files
-  action: shell rm -f /etc/sudoers.d/*
+  action: file path=/etc/sudoers.d/* state=absent
 
 - name: Install packages
   action: apt pkg=ufw state=installed

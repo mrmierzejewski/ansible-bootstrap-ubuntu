@@ -1,7 +1,7 @@
 ---
 - name: Bootstrap Ubuntu servers
   hosts: server
-  sudo: yes
+  become: yes
   roles:
     - nginx
     - collectd

@@ -1,2 +1,3 @@
 group_vars/server.yml
 hosts
+*.retry
