@@ -43,10 +43,10 @@ Copy sample configuration files:
 
 ```
 $ cp hosts.sample hosts
-$ cp global_vars/server.yml.sample global_vars/server.yml
+$ cp group_vars/server.yml.sample group_vars/server.yml
 ```
 
-Edit configuration files (hosts and global_vars/server.yml) with your own configuration.
+Edit configuration files (hosts and group_vars/server.yml) with your own configuration.
 
 ## Prerequisites for RunAbove hosting
 
