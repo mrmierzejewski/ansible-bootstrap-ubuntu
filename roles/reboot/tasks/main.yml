@@ -1,12 +1,18 @@
 ---
-- name: restart machine
-  command: shutdown -r now "Ansible updates triggered"
-  async: 0
+# Send the reboot command asynchronously
+- shell: sleep 5 && shutdown -r now
+  become: true
+  async: 1
   poll: 0
   ignore_errors: true
   when: reboot == "yes"
 
-- name: waiting for server to come back
-  sudo: False
-  local_action: wait_for host="{{ inventory_hostname }}" port=22 delay=1 timeout=300
+- local_action: wait_for host="{{ inventory_hostname }}" port=22 delay=1 timeout=300 state=stopped
   when: reboot == "yes"
+
+- local_action: wait_for host="{{ inventory_hostname }}" port=22 delay=1 timeout=300
+  when: reboot == "yes"
+
+# This is needed for encrypted home folders
+- pause: prompt="Confirm that you logged in to reveal the encrypted home directory"
+  when: confirm_login == "yes"
